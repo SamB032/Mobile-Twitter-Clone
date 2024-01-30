@@ -2,13 +2,12 @@ import { SafeAreaView, ScrollView, StyleSheet, Platform, RefreshControl} from 'r
 import { useRef, useContext} from 'react';
 import Lottie from 'lottie-react-native';
 
-import { Text, View } from '@/components/Themed';
 import ThreadsItem from '@/components/ThreadsItem'
-import { ThreadsContext } from '@/context/thread-context';
+import { ThreadsUserContext } from '@/context/thread-context';
 
 export default function TabOneScreen() {
   const animationRef = useRef<Lottie>(null);
-  const threads = useContext(ThreadsContext);
+  const data = useContext(ThreadsUserContext);
 
   return (
     <SafeAreaView>
@@ -33,7 +32,7 @@ export default function TabOneScreen() {
             style={{width: 90, height: 90, alignSelf: "center"}}
           />
         
-        {threads.map((thread) => (
+        {data && data.threads.map((thread) => (
           <ThreadsItem 
             key={thread.id}
             {...thread}

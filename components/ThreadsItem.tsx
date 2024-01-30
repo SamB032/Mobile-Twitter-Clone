@@ -2,14 +2,14 @@ import { Ionicons, Feather, AntDesign, FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 
-import { Thread } from '@/types/threads'
+import { Reply, Thread } from '@/types/threads'
 import { Text, View } from '@/components/Themed';
 import { timeAgo } from '@/utils/time-ago';
 import { useColorScheme, StyleSheet } from 'react-native';
 
 const blurhash = "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
-export default function ThreadsItem(thread) {
+export default function ThreadsItem(thread: Thread) {
 
     return (
         <View style={styles.container}>
@@ -44,7 +44,7 @@ export default function ThreadsItem(thread) {
     )
 }
 
-function PostLeftSide(thread) {
+function PostLeftSide(thread: Thread) {
     const currentTheme = useColorScheme();
     const borderColor = currentTheme === "light" ? "#00000020" : "#ffffff20";
   
@@ -89,7 +89,7 @@ function PostLeftSide(thread) {
   );
 }
 
-function PostHeading({name, createdAt, verified}) {
+function PostHeading({name, createdAt, verified}: {name: string, createdAt: string, verified: boolean}) {
     return (
         <View
             style={{
@@ -112,7 +112,7 @@ function PostHeading({name, createdAt, verified}) {
     )
 }
 
-function PostFooter({replies, likes}) {
+function PostFooter({replies, likes}: {replies: number, likes: number}) {
     return (
         <Text style={{color: "grey"}}>
             {replies} replies · {likes} likes

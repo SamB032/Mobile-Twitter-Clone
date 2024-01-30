@@ -1,6 +1,8 @@
 import { faker } from "@faker-js/faker";
 import { Thread, User } from '../types/threads'
 
+const NUMBER_OF_THREADS: number = 75;
+
 export function createRandomFollower(): User {
     return {
         id: faker.string.uuid(),
@@ -52,6 +54,20 @@ export function createRandomThread(): Thread {
     }
 }
 
-export function generateThreads(): Thread[] {
-    return new Array(50).fill(null).map((_) => createRandomThread());
+export function generateThreads(): [Thread[], User[]]  {
+
+    const threads = Array(NUMBER_OF_THREADS).fill(null).map((_) => createRandomThread());
+    const users:User[] = [];
+
+    for (let i:number = 0; i < NUMBER_OF_THREADS; i++){
+        //Add author of main thread
+        users.push(threads[i].author);
+        
+        //Add any replies users
+        threads[i].replies?.forEach((reply) =>
+            users.push(reply.author)
+        );
+    }
+
+    return [threads, users]
 }
