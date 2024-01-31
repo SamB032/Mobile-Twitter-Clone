@@ -27,5 +27,6 @@ export interface User {
     photo: string;
     bio: string;
     link?: string;
+    createdAt: string;
     followers?: User[];
 }

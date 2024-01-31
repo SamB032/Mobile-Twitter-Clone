@@ -1,4 +1,4 @@
-import { SafeAreaView, ScrollView, StyleSheet, Platform, RefreshControl} from 'react-native';
+import { SafeAreaView, ScrollView, Platform, RefreshControl} from 'react-native';
 import { useRef, useContext} from 'react';
 import Lottie from 'lottie-react-native';
 

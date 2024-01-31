@@ -12,6 +12,7 @@ export function createRandomFollower(): User {
         photo: faker.image.avatar(),
         bio: faker.person.bio(),
         link: faker.internet.url(),
+        createdAt: faker.date.past().toISOString(),
     };
 }
 
@@ -24,6 +25,7 @@ export function createRandomUser(): User {
         photo: faker.image.avatar(),
         bio: faker.person.bio(),
         link: faker.internet.url(),
+        createdAt: faker.date.past().toISOString(),
         followers: new Array(Math.floor(Math.random() * 10))
             .fill(null)
             .map((_) => createRandomFollower())
