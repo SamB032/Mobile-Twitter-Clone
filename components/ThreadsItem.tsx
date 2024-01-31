@@ -1,11 +1,12 @@
+import { useColorScheme, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons, Feather, AntDesign, FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { Image } from 'expo-image';
 
 import { Reply, Thread } from '@/types/threads'
 import { Text, View } from '@/components/Themed';
 import { timeAgo } from '@/utils/time-ago';
-import { useColorScheme, StyleSheet } from 'react-native';
 
 const blurhash = "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
@@ -47,16 +48,22 @@ export default function ThreadsItem(thread: Thread) {
 function PostLeftSide(thread: Thread) {
     const currentTheme = useColorScheme();
     const borderColor = currentTheme === "light" ? "#00000020" : "#ffffff20";
-  
+    
+    const goToProfile = () => {
+        router.push({ pathname: `/Profile?encodedUser=${encodeURIComponent(JSON.stringify(thread.author))}` });
+    }
+
     return (
       <View style={{ justifyContent: "space-between" }}>
-        <Image
-          source={thread.author.photo}
-          style={styles.image}
-          placeholder={blurhash}
-          contentFit="cover"
-          transition={500}
-        />
+        <TouchableOpacity onPress={goToProfile}>
+            <Image
+            source={thread.author.photo}
+            style={styles.image}
+            placeholder={blurhash}
+            contentFit="cover"
+            transition={500}
+            />
+        </TouchableOpacity>
         <View
           style={{
             borderWidth: 1,

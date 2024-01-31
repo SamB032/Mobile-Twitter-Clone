@@ -18,7 +18,7 @@ export default function TabTwoScreen() {
       <View style={styles.searchContainer} >
         <TextInput
           style={[styles.input, { color: fontColor, borderColor: borderColor }]}
-          placeholder="Search Posted Users..."
+          placeholder="Search Users..."
           placeholderTextColor={fontColor}
           onChangeText={(searchTerm) => {
             const queriedUsers = allUsers && allUsers.filter((user) => user.name.includes(searchTerm) || user.username.includes(searchTerm));
@@ -41,11 +41,12 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     paddingHorizontal: 16,
-    paddingTop: Platform.select({ android: 45 })
+    paddingTop: Platform.select({ android: 45 }),
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingBottom: 15,
   },
   input: {
     flex: 1,
