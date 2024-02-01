@@ -21,22 +21,20 @@ export default function Profile(): JSX.Element {
   
   return (
     <SafeAreaView style={{marginHorizontal: 15}}>
-      <ProfileHeader
-        username = {user.username}
-        name = {user.name}
-        image = {user.photo}
-        verified = {user.verified}
-      />
-
-      <UserBio
-        content = {user.bio}
-        link = {user.link}
-        numberOfFollowers={user.followers.length}
-        joinedAt={user.createdAt}
-      />
-
-    
       <ScrollView>
+        <ProfileHeader
+          username = {user.username}
+          name = {user.name}
+          image = {user.photo}
+          verified = {user.verified}
+        />
+
+        <UserBio
+          content = {user.bio}
+          link = {user.link}
+          numberOfFollowers={user.followers.length}
+          joinedAt={user.createdAt}
+        />      
         {authoredThreads && authoredThreads.map((thread) => (<ThreadsItem key={thread.id} {...thread} />))}
       </ScrollView>
     </SafeAreaView>
